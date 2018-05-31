@@ -6,6 +6,7 @@ use std::borrow::Borrow;
 use std::sync::Arc;
 use std::{fmt, ops};
 use serde::{ser, de};
+use util;
 
 // We use Arc and not Rc because error_chain requires Send. This is annoying
 // but unlikely to matter.
@@ -19,6 +20,11 @@ impl Id {
     #[inline]
     pub fn new(s: String) -> Id {
         Id(Arc::new(s))
+    }
+
+    #[inline]
+    pub fn new_rand() -> Id {
+        Id::new(util::random_guid().unwrap())
     }
 
     #[inline]
