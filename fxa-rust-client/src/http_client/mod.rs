@@ -66,7 +66,7 @@ impl<'a> Client<'a> {
     }
 
     pub fn login(&self, email: &str, auth_pwd: &str, get_keys: bool) -> Result<LoginResponse> {
-        let url = self.config.auth_url_path("v1/account/login")?;
+        let url = self.config.authorization_endpoint("v1/account/login")?;
         let parameters = json!({
           "email": email,
           "authPW": auth_pwd
